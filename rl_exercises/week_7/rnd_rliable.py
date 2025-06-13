@@ -9,15 +9,15 @@ from rliable.plot_utils import plot_sample_efficiency_curve
 
 
 def load_training_data(
-    data_pattern="rl_exercises/week_7/training_data_seed_*.csv",
-    rnd_pattern="rl_exercises/week_7/rnd_losses_seed_*.csv",
+    data_pattern="rl_exercises/week_7/data/training_data_seed_*.csv",
+    rnd_pattern="rl_exercises/week_7/data/rnd_losses_seed_*.csv",
 ):
     training_files = glob.glob(data_pattern)
     rnd_files = glob.glob(rnd_pattern)
 
     all_dfs = []
     for i, file in enumerate(sorted(training_files)):
-        # print(f"training from {file} {i+1})")
+        # print(f'training from {file} {i+1})')
         df = pd.read_csv(file)
         seed = int(file.split("_")[-1].replace(".csv", ""))
         df["seed"] = seed

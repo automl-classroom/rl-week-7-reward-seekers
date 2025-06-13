@@ -16,8 +16,8 @@ def main():
     # Read data from different runs
     # This is the toy data, you can also build a proper loop over your own runs.
     print(os.getcwd())
-    df_s0 = pd.read_csv("rl_exercises/week_7/demo_data_seed_0.csv")
-    df_s1 = pd.read_csv("rl_exercises/week_7/demo_data_seed_1.csv")
+    df_s0 = pd.read_csv("rl_exercises/week_7/data/demo_data_seed_0.csv")
+    df_s1 = pd.read_csv("rl_exercises/week_7/data/demo_data_seed_1.csv")
     # Add a column to distinguish between seeds
     # You would do something similar for different algorithms
     df_s0["seed"] = 0
