@@ -123,12 +123,10 @@ class RNDDQNAgent(DQNAgent):
         self.rnd_optimizer = optim.Adam(self.rnd_predictor.parameters(), lr=rnd_lr)
         self.rnd_criterion = nn.MSELoss()
 
-        # Move to device if available
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.rnd_target.to(device)
         self.rnd_predictor.to(device)
 
-        # Keep track of RND losses for monitoring
         self.rnd_losses = []
 
     def _preprocess_state(self, state: np.ndarray) -> torch.Tensor:
@@ -140,7 +138,6 @@ class RNDDQNAgent(DQNAgent):
         else:
             state_tensor = torch.FloatTensor([state]).to(device)
 
-        # Flatten if multi-dimensional
         if len(state_tensor.shape) > 1:
             state_tensor = state_tensor.flatten()
 
@@ -219,7 +216,6 @@ class RNDDQNAgent(DQNAgent):
             target_features = self.rnd_target(state_tensor)
             predicted_features = self.rnd_predictor(state_tensor)
 
-            # Get error (MSE between predictions)
             error = torch.mean((predicted_features - target_features) ** 2)
 
             return error.item()
